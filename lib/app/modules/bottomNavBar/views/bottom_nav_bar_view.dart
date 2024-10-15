@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:veryzona/app/modules/home/controllers/home_controller.dart';
 import 'package:veryzona/app/modules/home/views/home_view.dart';
+import 'package:veryzona/app/modules/profile/views/profile_view.dart';
 import 'package:veryzona/app/modules/utils/constantColor.dart';
 import '../controllers/bottom_nav_bar_controller.dart';
 
@@ -23,7 +24,7 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
               Container(child: Center(child: Text('Book View'))),
               Container(child: Center(child: Text('Menu Book View'))),
               Container(child: Center(child: Text('Bookmark View 1'))),
-              Container(child: Center(child: Text('Bookmark View 2'))),
+              ProfileView(),
             ],
           )),
       bottomNavigationBar: Container(
@@ -53,7 +54,7 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
             _buildNavItem(1, Icons.book_outlined, 'Book'),
             _buildNavItem(2, Icons.menu_book_outlined, ''),
             _buildNavItem(3, Icons.bookmark_border_outlined, ''),
-            _buildNavItem(4, Icons.bookmark_border_outlined, ''),
+            _buildNavItem(4, Icons.person, 'profile'),
           ],
         ),
       ),

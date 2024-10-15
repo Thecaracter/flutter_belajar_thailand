@@ -1,3 +1,6 @@
+// ignore_for_file: unnecessary_overrides, avoid_print
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -7,6 +10,8 @@ import 'package:veryzona/app/modules/components/loading_overlay.dart';
 import 'package:veryzona/app/modules/utils/constanApi.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:veryzona/app/modules/utils/constantColor.dart';
+import 'package:veryzona/app/services/connectivity_service.dart';
 
 class BacaArtikelController extends GetxController {
   final count = 0.obs;
@@ -16,6 +21,24 @@ class BacaArtikelController extends GetxController {
   final RxBool isLiked = false.obs;
   final RxInt likesCount = 0.obs;
   final RxBool isBookmarked = false.obs;
+  final ConnectivityService _connectivityService =
+      Get.find<ConnectivityService>();
+
+  Future<void> _checkConnectivity() async {
+    if (!_connectivityService.connectionStatus
+            .contains(ConnectivityResult.wifi) &&
+        !_connectivityService.connectionStatus
+            .contains(ConnectivityResult.mobile) &&
+        !_connectivityService.connectionStatus
+            .contains(ConnectivityResult.ethernet)) {
+      Get.snackbar(
+        'Tidak ada koneksi internet',
+        'Periksa koneksi internet Anda',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return Future.error('No internet connection');
+    }
+  }
 
   @override
   void onInit() {
@@ -27,9 +50,14 @@ class BacaArtikelController extends GetxController {
       artikelId.value = int.tryParse(rawId);
     }
 
-    initializeDateFormatting('id_ID', null).then((_) {
+    initializeDateFormatting('id_ID', null).then((_) async {
       if (artikelId.value != null) {
-        initArtikel(artikelId.value!);
+        try {
+          await _checkConnectivity();
+          initArtikel(artikelId.value!);
+        } catch (e) {
+          isLoading.value = false;
+        }
       } else {
         isLoading.value = false;
       }
@@ -72,6 +100,7 @@ class BacaArtikelController extends GetxController {
     showLoading();
 
     try {
+      await _checkConnectivity();
       final token = await getToken();
       if (token == null) {
         isLoading.value = false;
@@ -95,7 +124,12 @@ class BacaArtikelController extends GetxController {
         isBookmarked.value = artikel.value?.data?.isBookmarked ?? false;
       }
     } catch (e) {
-      print('Error loading artikel: $e');
+      Get.snackbar(
+        'Error',
+        'Error loading artikel: $e',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: ConstanColor.Danger,
+      );
     } finally {
       hideLoading();
     }
@@ -128,7 +162,12 @@ class BacaArtikelController extends GetxController {
         isBookmarked.value = artikel.value?.data?.isBookmarked ?? false;
       }
     } catch (e) {
-      print('Error loading artikel: $e');
+      Get.snackbar(
+        'Error',
+        'Error loading artikel: $e',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: ConstanColor.Danger,
+      );
     } finally {
       isLoading.value = false;
     }
@@ -138,6 +177,7 @@ class BacaArtikelController extends GetxController {
     if (artikelId.value == null) return;
 
     try {
+      await _checkConnectivity();
       final token = await getToken();
       if (token == null) return;
 

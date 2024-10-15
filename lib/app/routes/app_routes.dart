@@ -12,6 +12,7 @@ abstract class Routes {
   static const ONBOARDING = _Paths.ONBOARDING;
   static const BOTTOM_NAV_BAR = _Paths.BOTTOM_NAV_BAR;
   static const BACA_ARTIKEL = _Paths.BACA_ARTIKEL;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const ONBOARDING = '/onboarding';
   static const BOTTOM_NAV_BAR = '/bottom-nav-bar';
   static const BACA_ARTIKEL = '/baca-artikel';
+  static const PROFILE = '/profile';
 }
