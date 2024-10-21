@@ -13,6 +13,9 @@ abstract class Routes {
   static const BOTTOM_NAV_BAR = _Paths.BOTTOM_NAV_BAR;
   static const BACA_ARTIKEL = _Paths.BACA_ARTIKEL;
   static const PROFILE = _Paths.PROFILE;
+  static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
+  static const CHECK_OTP = _Paths.CHECK_OTP;
+  static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
 }
 
 abstract class _Paths {
@@ -25,4 +28,7 @@ abstract class _Paths {
   static const BOTTOM_NAV_BAR = '/bottom-nav-bar';
   static const BACA_ARTIKEL = '/baca-artikel';
   static const PROFILE = '/profile';
+  static const FORGOT_PASSWORD = '/forgot-password';
+  static const CHECK_OTP = '/check-otp';
+  static const CHANGE_PASSWORD = '/change-password';
 }

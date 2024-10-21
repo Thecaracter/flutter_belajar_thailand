@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:veryzona/app/modules/profile/controllers/profile_controller.dart';
 import 'package:veryzona/app/modules/utils/constantColor.dart';
 import '../controllers/home_controller.dart';
 import 'dart:convert';
@@ -12,6 +13,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
+    final controllerProfile = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -20,23 +22,39 @@ class HomeView extends GetView<HomeController> {
         leadingWidth: 0,
         title: Row(
           children: [
-            CircleAvatar(
-              backgroundColor: Colors.red[800],
-              radius: 14,
-              child: Icon(Icons.person, color: Colors.white, size: 17),
+            Obx(
+              () {
+                final user = controllerProfile.user.value;
+                final avatarBase64 = user?.avatarBase64?.value;
+
+                return CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Colors.red[800],
+                  backgroundImage:
+                      (avatarBase64 != null && avatarBase64.isNotEmpty)
+                          ? MemoryImage(
+                              controllerProfile.decodeBase64Image(avatarBase64))
+                          : null,
+                  child: (avatarBase64 == null || avatarBase64.isEmpty)
+                      ? Icon(Icons.person, color: Colors.white, size: 40)
+                      : null,
+                );
+              },
             ),
             SizedBox(width: 8),
             Obx(
               () {
-                if (controller.isLoading.value && controller.userName.isEmpty) {
+                if (controller.isLoading.value &&
+                    controllerProfile.user.value == null) {
                   return Text('Loading...');
                 } else {
                   return Text(
-                    controller.userName,
+                    controllerProfile.user.value!.name.value, // Add .value here
                     style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
                   );
                 }
               },

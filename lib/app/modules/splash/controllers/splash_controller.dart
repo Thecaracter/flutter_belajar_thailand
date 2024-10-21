@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashController extends GetxController {
   final count = 0.obs;
@@ -10,11 +11,17 @@ class SplashController extends GetxController {
   }
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
-    Future.delayed(const Duration(seconds: 3), () {
-      Get.offAllNamed('/login');
-    });
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('user_token');
+    if (token != null) {
+      Get.offAllNamed('/bottom-nav-bar');
+    } else {
+      Future.delayed(const Duration(seconds: 3), () {
+        Get.offAllNamed('/login');
+      });
+    }
   }
 
   @override
