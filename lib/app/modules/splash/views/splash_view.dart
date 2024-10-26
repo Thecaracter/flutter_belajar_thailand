@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:veryzona/app/modules/utils/constantColor.dart';
+import 'package:veryzona/app/modules/utils/constant_color.dart';
 
 import '../controllers/splash_controller.dart';
 

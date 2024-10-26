@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:veryzona/app/modules/utils/constantColor.dart';
+import 'package:veryzona/app/modules/utils/constant_color.dart';
 import 'package:veryzona/app/modules/forgotPassword/controllers/forgot_password_controller.dart';
 import 'package:veryzona/app/modules/components/input_field.dart';
 

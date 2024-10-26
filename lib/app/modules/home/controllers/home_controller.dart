@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:veryzona/app/data/model/artikel_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:veryzona/app/modules/components/loading_overlay.dart';
-import 'package:veryzona/app/modules/utils/constanApi.dart';
+import 'package:veryzona/app/modules/utils/constan_api.dart';
 
 class HomeController extends GetxController {
   final Rx<String?> _userName = Rx<String?>(null);

@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:veryzona/app/modules/components/loading_overlay.dart';
-import 'package:veryzona/app/modules/utils/constanApi.dart';
-import 'package:veryzona/app/modules/utils/constantColor.dart';
+import 'package:veryzona/app/modules/utils/constan_api.dart';
+import 'package:veryzona/app/modules/utils/constant_color.dart';
 
 class LoginController extends GetxController {
   final emailController = TextEditingController();

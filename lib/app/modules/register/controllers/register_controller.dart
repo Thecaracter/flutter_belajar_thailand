@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:veryzona/app/modules/components/loading_overlay.dart';
-import 'package:veryzona/app/modules/utils/constanApi.dart';
+import 'package:veryzona/app/modules/utils/constan_api.dart';
 
 class RegisterController extends GetxController {
   final _isChecked = false.obs;

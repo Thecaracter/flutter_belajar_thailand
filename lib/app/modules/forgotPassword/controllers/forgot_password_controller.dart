@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:veryzona/app/modules/components/loading_overlay.dart';
-import 'package:veryzona/app/modules/utils/constanApi.dart';
+import 'package:veryzona/app/modules/utils/constan_api.dart';
 
 class ForgotPasswordController extends GetxController {
   final emailController = TextEditingController();

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:veryzona/app/modules/forgotPassword/controllers/forgot_password_controller.dart';
-import 'package:veryzona/app/modules/utils/constantColor.dart';
+import 'package:veryzona/app/modules/utils/constant_color.dart';
 
 class CheckOtpView extends GetView<ForgotPasswordController> {
   const CheckOtpView({Key? key}) : super(key: key);

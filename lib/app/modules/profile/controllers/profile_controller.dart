@@ -6,11 +6,11 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:veryzona/app/modules/components/loading_overlay.dart';
-import 'package:veryzona/app/modules/utils/constanApi.dart';
+import 'package:veryzona/app/modules/utils/constan_api.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:veryzona/app/data/model/user_model.dart';
-import 'package:veryzona/app/modules/utils/constantColor.dart';
+import 'package:veryzona/app/modules/utils/constant_color.dart';
 import 'package:file_picker/file_picker.dart';
 
 class ProfileController extends GetxController {

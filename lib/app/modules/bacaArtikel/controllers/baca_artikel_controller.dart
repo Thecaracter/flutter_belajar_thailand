@@ -7,10 +7,10 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:veryzona/app/data/model/baca_artikel_model.dart';
 import 'package:veryzona/app/modules/components/loading_overlay.dart';
-import 'package:veryzona/app/modules/utils/constanApi.dart';
+import 'package:veryzona/app/modules/utils/constan_api.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:veryzona/app/modules/utils/constantColor.dart';
+import 'package:veryzona/app/modules/utils/constant_color.dart';
 import 'package:veryzona/app/services/connectivity_service.dart';
 
 class BacaArtikelController extends GetxController {

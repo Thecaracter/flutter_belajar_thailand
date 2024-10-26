@@ -1,13 +1,16 @@
 import 'package:get/get.dart';
-import 'package:veryzona/app/modules/forgotPassword/bindings/change_password_binding.dart';
-import 'package:veryzona/app/modules/forgotPassword/views/change_password_view.dart';
-import 'package:veryzona/app/modules/forgotPassword/views/check_otp_view.dart';
+
 import '../modules/bacaArtikel/bindings/baca_artikel_binding.dart';
 import '../modules/bacaArtikel/views/baca_artikel_view.dart';
+import '../modules/book/bindings/book_binding.dart';
+import '../modules/book/views/book_view.dart';
 import '../modules/bottomNavBar/bindings/bottom_nav_bar_binding.dart';
 import '../modules/bottomNavBar/views/bottom_nav_bar_view.dart';
-import '../modules/forgotPassword/bindings/forgot_password_binding.dart';
+import '../modules/forgotPassword/bindings/change_password_binding.dart';
 import '../modules/forgotPassword/bindings/check_otp_binding.dart';
+import '../modules/forgotPassword/bindings/forgot_password_binding.dart';
+import '../modules/forgotPassword/views/change_password_view.dart';
+import '../modules/forgotPassword/views/check_otp_view.dart';
 import '../modules/forgotPassword/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
@@ -86,6 +89,11 @@ class AppPages {
       name: Routes.CHANGE_PASSWORD,
       page: () => const ChangePasswordView(),
       binding: ChangePasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOK,
+      page: () => const BookView(),
+      binding: BookBinding(),
     ),
   ];
 }
