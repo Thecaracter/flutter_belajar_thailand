@@ -1,3 +1,5 @@
+// ignore_for_file: unused_catch_stack
+
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,7 +26,6 @@ class LessonController extends GetxController {
       isLoading.value = true;
 
       final token = await getToken();
-      print('Token: $token');
 
       if (token == null) {
         Get.snackbar(
@@ -35,8 +36,6 @@ class LessonController extends GetxController {
         return;
       }
 
-      print('Fetching from URL: ${ConstanApi.Categories}');
-
       final response = await http.get(
         Uri.parse(ConstanApi.Categories),
         headers: {
@@ -45,25 +44,16 @@ class LessonController extends GetxController {
         },
       );
 
-      print('Response status: ${response.statusCode}');
-      print('Response headers: ${response.headers}');
-      print('Response body raw: ${response.body}');
-
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        print('Decoded data: $data');
-        print('Categories from response: ${data['data']['categories']}');
         categories.value = data['data']['categories'];
-        print('Categories in controller: ${categories.value}');
       } else if (response.statusCode == 401) {
-        print('Auth error - token might be invalid');
         Get.snackbar(
           'Error',
           'Session expired. Please login again',
           snackPosition: SnackPosition.BOTTOM,
         );
       } else {
-        print('Other error - status code: ${response.statusCode}');
         Get.snackbar(
           'Error',
           'Failed to load categories',
@@ -71,8 +61,6 @@ class LessonController extends GetxController {
         );
       }
     } catch (e, stackTrace) {
-      print('Error fetching categories: $e');
-      print('Stack trace: $stackTrace');
       Get.snackbar(
         'Error',
         'An error occurred while loading categories',

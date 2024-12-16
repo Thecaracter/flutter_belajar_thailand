@@ -19,4 +19,6 @@ class ConstanApi {
   static const String BookmarkedArticles = "$API/bookmarked-articles";
   static const String Categories = "$API/categories";
   static const String LessonsByCategory = "$API/kategori-lessons/lessons";
+  static const String LessonDetail = "$API/lessons/detail";
+  static const String MarkLessonAsRead = "$API/lessons/mark-as-read";
 }

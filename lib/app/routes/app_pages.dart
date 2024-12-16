@@ -18,6 +18,8 @@ import '../modules/forgotPassword/views/check_otp_view.dart';
 import '../modules/forgotPassword/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/isiLesson/bindings/isi_lesson_binding.dart';
+import '../modules/isiLesson/views/isi_lesson_view.dart';
 import '../modules/lesson/bindings/lesson_binding.dart';
 import '../modules/lesson/views/lesson_view.dart';
 import '../modules/lessonList/bindings/lesson_list_binding.dart';
@@ -121,6 +123,11 @@ class AppPages {
       name: _Paths.LESSON_LIST,
       page: () => const LessonListView(),
       binding: LessonListBinding(),
+    ),
+    GetPage(
+      name: _Paths.ISI_LESSON,
+      page: () => const IsiLessonView(),
+      binding: IsiLessonBinding(),
     ),
   ];
 }

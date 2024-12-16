@@ -43,10 +43,6 @@ class ArtikelBookmarkController extends GetxController {
         return;
       }
 
-      print('Fetching bookmarked articles...');
-      print('Token: $token');
-      print('URL: ${ConstanApi.BookmarkedArticles}');
-
       final response = await http.get(
         Uri.parse(ConstanApi.BookmarkedArticles),
         headers: {
@@ -55,23 +51,15 @@ class ArtikelBookmarkController extends GetxController {
         },
       );
 
-      print('Response Status Code: ${response.statusCode}');
-      print('Response Body: ${response.body}');
-
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        print('Decoded Data: $data');
         artikelList.value = data['data'];
-        print('Artikel List Length: ${artikelList.length}');
       } else if (response.statusCode == 401) {
-        print('Authentication Error: ${response.body}');
         Get.snackbar('Error', 'Session expired. Please login again');
       } else {
-        print('Other Error: ${response.body}');
         Get.snackbar('Error', 'Failed to fetch bookmarked articles');
       }
     } catch (e) {
-      print('Exception occurred: $e');
       Get.snackbar('Error', 'An error occurred: ${e.toString()}');
     } finally {
       isLoading.value = false;

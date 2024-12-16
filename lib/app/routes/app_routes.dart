@@ -20,6 +20,7 @@ abstract class Routes {
   static const ARTIKEBOOKMARK = _Paths.ARTIKEBOOKMARK;
   static const LESSON = _Paths.LESSON;
   static const LESSON_LIST = _Paths.LESSON_LIST;
+  static const ISI_LESSON = _Paths.ISI_LESSON;
 }
 
 abstract class _Paths {
@@ -39,4 +40,5 @@ abstract class _Paths {
   static const ARTIKEBOOKMARK = '/artikebookmark';
   static const LESSON = '/lesson';
   static const LESSON_LIST = '/lesson-list';
+  static const ISI_LESSON = '/isi-lesson';
 }

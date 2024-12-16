@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_overrides, await_only_futures
+
 import 'package:get/get.dart';
 import 'package:veryzona/app/modules/home/controllers/home_controller.dart';
 import 'package:veryzona/app/modules/artikebookmark/controllers/artikebookmark_controller.dart';
