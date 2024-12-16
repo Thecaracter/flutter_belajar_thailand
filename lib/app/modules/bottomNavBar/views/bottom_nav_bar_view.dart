@@ -1,9 +1,12 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:veryzona/app/modules/book/views/book_view.dart';
+import 'package:veryzona/app/modules/artikebookmark/controllers/artikebookmark_controller.dart';
+import 'package:veryzona/app/modules/book/controllers/book_controller.dart';
 import 'package:veryzona/app/modules/home/controllers/home_controller.dart';
+import 'package:veryzona/app/modules/lesson/views/lesson_view.dart';
+import 'package:veryzona/app/modules/profile/controllers/profile_controller.dart';
+import 'package:veryzona/app/modules/artikebookmark/views/artikebookmark_view.dart';
+import 'package:veryzona/app/modules/book/views/book_view.dart';
 import 'package:veryzona/app/modules/home/views/home_view.dart';
 import 'package:veryzona/app/modules/profile/views/profile_view.dart';
 import 'package:veryzona/app/modules/utils/constant_color.dart';
@@ -14,18 +17,23 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
 
   @override
   Widget build(BuildContext context) {
-    // Ensure HomeController is available
     Get.put(HomeController());
+    Get.put(BookController());
+    Get.put(ArtikelBookmarkController());
+    Get.put(ProfileController());
 
     return Scaffold(
       body: Obx(() => IndexedStack(
             index: controller.selectedIndex.value,
             children: [
-              HomeView(),
-              BookView(),
-              Container(child: Center(child: Text('Menu Book View'))),
-              Container(child: Center(child: Text('Bookmark View 1'))),
-              ProfileView(),
+              const HomeView(),
+              const BookView(),
+              Container(
+                color: ConstanColor.primaryColor,
+                child: const LessonView(),
+              ),
+              const ArtikelBookmarkView(),
+              const ProfileView(),
             ],
           )),
       bottomNavigationBar: Container(
@@ -39,12 +47,12 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
               ConstanColor.secondaryColor,
             ],
           ),
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
               blurRadius: 4,
-              offset: Offset(0, -1),
+              offset: const Offset(0, -1),
             ),
           ],
         ),
@@ -53,8 +61,8 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
           children: [
             _buildNavItem(0, Icons.home_outlined, 'Home'),
             _buildNavItem(1, Icons.book_outlined, 'Book'),
-            _buildNavItem(2, Icons.menu_book_outlined, ''),
-            _buildNavItem(3, Icons.bookmark_border_outlined, ''),
+            _buildNavItem(2, Icons.menu_book_outlined, 'Lesson'),
+            _buildNavItem(3, Icons.bookmark_border_outlined, 'Book Mark'),
             _buildNavItem(4, Icons.person, 'profile'),
           ],
         ),
@@ -66,7 +74,7 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
     return Obx(() => GestureDetector(
           onTap: () => controller.changeIndex(index),
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             decoration: BoxDecoration(
               color: controller.selectedIndex.value == index
                   ? Colors.white.withOpacity(0.2)
@@ -84,7 +92,7 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
                 if (label.isNotEmpty)
                   Text(
                     label,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,
                     ),

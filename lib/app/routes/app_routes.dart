@@ -17,6 +17,9 @@ abstract class Routes {
   static const CHECK_OTP = _Paths.CHECK_OTP;
   static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
   static const BOOK = _Paths.BOOK;
+  static const ARTIKEBOOKMARK = _Paths.ARTIKEBOOKMARK;
+  static const LESSON = _Paths.LESSON;
+  static const LESSON_LIST = _Paths.LESSON_LIST;
 }
 
 abstract class _Paths {
@@ -33,4 +36,7 @@ abstract class _Paths {
   static const CHECK_OTP = '/check-otp';
   static const CHANGE_PASSWORD = '/change-password';
   static const BOOK = '/book';
+  static const ARTIKEBOOKMARK = '/artikebookmark';
+  static const LESSON = '/lesson';
+  static const LESSON_LIST = '/lesson-list';
 }

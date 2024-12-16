@@ -16,4 +16,7 @@ class ConstanApi {
   static const String GetProfile = "$API/profile";
   static const String UpdateProfile = "$API/profile";
   static const String UpdateAvatar = "$API/profile/avatar";
+  static const String BookmarkedArticles = "$API/bookmarked-articles";
+  static const String Categories = "$API/categories";
+  static const String LessonsByCategory = "$API/kategori-lessons/lessons";
 }

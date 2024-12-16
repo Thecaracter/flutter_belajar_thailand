@@ -1,5 +1,9 @@
+import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
+import '../modules/artikebookmark/bindings/artikebookmark_binding.dart';
+import '../modules/artikebookmark/views/artikebookmark_view.dart';
 import '../modules/bacaArtikel/bindings/baca_artikel_binding.dart';
 import '../modules/bacaArtikel/views/baca_artikel_view.dart';
 import '../modules/book/bindings/book_binding.dart';
@@ -14,6 +18,10 @@ import '../modules/forgotPassword/views/check_otp_view.dart';
 import '../modules/forgotPassword/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/lesson/bindings/lesson_binding.dart';
+import '../modules/lesson/views/lesson_view.dart';
+import '../modules/lessonList/bindings/lesson_list_binding.dart';
+import '../modules/lessonList/views/lesson_list_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
@@ -24,6 +32,7 @@ import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/utils/constant_color.dart';
 
 // ignore_for_file: constant_identifier_names
 
@@ -61,8 +70,11 @@ class AppPages {
       binding: OnboardingBinding(),
     ),
     GetPage(
-      name: _Paths.BOTTOM_NAV_BAR,
-      page: () => const BottomNavBarView(),
+      name: Routes.BOTTOM_NAV_BAR,
+      page: () => Container(
+        color: ConstanColor.primaryColor,
+        child: const BottomNavBarView(),
+      ),
       binding: BottomNavBarBinding(),
     ),
     GetPage(
@@ -94,6 +106,21 @@ class AppPages {
       name: _Paths.BOOK,
       page: () => const BookView(),
       binding: BookBinding(),
+    ),
+    GetPage(
+      name: _Paths.ARTIKEBOOKMARK,
+      page: () => const ArtikelBookmarkView(),
+      binding: ArtikebookmarkBinding(),
+    ),
+    GetPage(
+      name: _Paths.LESSON,
+      page: () => const LessonView(),
+      binding: LessonBinding(),
+    ),
+    GetPage(
+      name: _Paths.LESSON_LIST,
+      page: () => const LessonListView(),
+      binding: LessonListBinding(),
     ),
   ];
 }

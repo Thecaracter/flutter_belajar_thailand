@@ -1,63 +1,163 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:veryzona/app/modules/book/controllers/book_controller.dart';
 
-class KategoriNadaView extends GetView {
+class KategoriNadaView extends GetView<BookController> {
   const KategoriNadaView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    BookController bookController = Get.find<BookController>();
-
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
+      child: Container(
+        padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'สระไทย',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              'วรรณยุกต์',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
             ),
-            SizedBox(height: 10),
             Text(
-              'Sara Thai/ Vokal Thai mempunya 32 jumlah secara total namun ada beberapa tambahan di aplikasi ini yang menjadi 40 total.',
-              style: TextStyle(fontSize: 12),
+              'wannayuk / Nada Thai mempunyai 4 tanda nada dan 5 bunyi\nnada dalam sistem bahasa Thai.',
+              style:
+                  TextStyle(fontSize: 12, color: Colors.black54, height: 1.2),
             ),
             SizedBox(height: 20),
+            Text(
+              'รูปวรรณยุกต์',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            ),
+            Text(
+              'ruup wannayuk / tanda nada',
+              style: TextStyle(fontSize: 12, color: Colors.black54),
+            ),
+            SizedBox(height: 8),
             GetX<BookController>(
               builder: (controller) => GridView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  childAspectRatio: 0.9,
                 ),
-                itemCount: controller.vokalList.length,
+                itemCount: controller.toneMarksList.length,
                 itemBuilder: (context, index) {
-                  final aksara = controller.vokalList[index];
+                  final tone = controller.toneMarksList[index];
                   return InkWell(
-                    onTap: () => controller.showAksaraDetail(context, aksara),
+                    onTap: () => controller.showToneDetail(context, tone),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Center(
-                        child: Text(
-                          aksara['aksara']!,
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            tone['symbol']!,
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
+                          Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade400,
+                              borderRadius: BorderRadius.vertical(
+                                bottom: Radius.circular(8),
+                              ),
+                            ),
+                            child: Text(
+                              tone['description']!,
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.black87,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   );
                 },
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'เสียงวรรณยุกต์',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            ),
+            Text(
+              'siiang wannayuk / bunyi nada',
+              style: TextStyle(fontSize: 12, color: Colors.black54),
+            ),
+            SizedBox(height: 8),
+            GetX<BookController>(
+              builder: (controller) => Column(
+                children: List.generate(
+                  controller.toneSoundsList.length,
+                  (index) {
+                    final toneSound = controller.toneSoundsList[index];
+                    return InkWell(
+                      onTap: () =>
+                          controller.showToneSoundDetail(context, toneSound),
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 60,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                toneSound['symbol']!,
+                                style: TextStyle(fontSize: 20),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade400,
+                                  borderRadius: BorderRadius.horizontal(
+                                    right: Radius.circular(12),
+                                  ),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      toneSound['character']!,
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    Text(
+                                      toneSound['description']!,
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],

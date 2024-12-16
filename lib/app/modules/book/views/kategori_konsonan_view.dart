@@ -1,17 +1,15 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: unused_local_variable, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import '../controllers/book_controller.dart';
+import 'package:veryzona/app/modules/book/controllers/book_controller.dart';
 
-class KategoriaksaraView extends GetView<BookController> {
-  const KategoriaksaraView({Key? key}) : super(key: key);
-
+class KategoriKonsonanView extends GetView {
+  const KategoriKonsonanView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // Pastikan controller sudah diinisialisasi
     BookController bookController = Get.find<BookController>();
-
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(20),

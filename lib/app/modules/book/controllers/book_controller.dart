@@ -1,23 +1,22 @@
-// ignore_for_file: unnecessary_overrides, prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, unnecessary_overrides, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:veryzona/app/data/model/kategoriclass_model.dart';
 import 'package:veryzona/app/modules/book/views/kategori_angka_view.dart';
-import 'package:veryzona/app/modules/book/views/kategori_bahasa_view.dart';
-import 'package:veryzona/app/modules/book/views/kategori_budaya_view.dart';
+import 'package:veryzona/app/modules/book/views/kategori_konsonan_view.dart';
 import 'package:veryzona/app/modules/book/views/kategori_nada_view.dart';
 import 'package:veryzona/app/modules/book/views/kategori_simbol_view.dart';
-import 'package:veryzona/app/modules/book/views/kategoriaksara_view.dart';
+import 'package:veryzona/app/modules/book/views/kategori_vokal_view.dart';
+import 'package:veryzona/app/modules/utils/constant_color.dart';
 
 class BookController extends GetxController {
   final RxList<KategoriClass> categories = [
-    KategoriClass(nama: 'aksara'),
     KategoriClass(nama: 'konsonan'),
+    KategoriClass(nama: 'vokal'),
+    KategoriClass(nama: 'nada'),
     KategoriClass(nama: 'angka'),
     KategoriClass(nama: 'simbol'),
-    KategoriClass(nama: 'bahasa'),
-    KategoriClass(nama: 'budaya'),
   ].obs;
 
   final RxInt selectedCategoryIndex = 0.obs;
@@ -25,10 +24,13 @@ class BookController extends GetxController {
 
   void navigateToView(String category) {
     switch (category.toLowerCase()) {
-      case 'aksara':
-        currentContent.value = KategoriaksaraView();
-        break;
       case 'konsonan':
+        currentContent.value = KategoriKonsonanView();
+        break;
+      case 'vokal':
+        currentContent.value = KategoriVokalView();
+        break;
+      case 'nada':
         currentContent.value = KategoriNadaView();
         break;
       case 'angka':
@@ -36,12 +38,6 @@ class BookController extends GetxController {
         break;
       case 'simbol':
         currentContent.value = KategoriSimbolView();
-        break;
-      case 'bahasa':
-        currentContent.value = KategoriBahasaView();
-        break;
-      case 'budaya':
-        currentContent.value = KategoriBudayaView();
         break;
       default:
         currentContent.value = Container(
@@ -60,7 +56,6 @@ class BookController extends GetxController {
     navigateToView(categories[index].nama);
   }
 
-  //aksara
   final RxList<Map<String, String>> aksaraList = [
     {
       "aksara": "ก",
@@ -331,9 +326,8 @@ class BookController extends GetxController {
       "detail": "Dilafalkan seperti 'h' dalam 'hari'"
     }
   ].obs;
-  //vokal
+
   final RxList<Map<String, String>> vokalList = [
-    // Vokal Dasar Pendek
     {
       "aksara": "ะ",
       "nama": "สระอะ",
@@ -388,8 +382,6 @@ class BookController extends GetxController {
       "pronounce": "sara oe",
       "detail": "Vokal pendek 'oe'"
     },
-
-    // Vokal Dasar Panjang
     {
       "aksara": "า",
       "nama": "สระอา",
@@ -438,8 +430,6 @@ class BookController extends GetxController {
       "pronounce": "sara oe",
       "detail": "Vokal panjang 'oe'"
     },
-
-    // Vokal Gabungan
     {
       "aksara": "เ-ีย",
       "nama": "สระเอีย",
@@ -482,8 +472,6 @@ class BookController extends GetxController {
       "pronounce": "sara ao",
       "detail": "Vokal gabungan 'ao'"
     },
-
-    // Kombinasi dengan ย
     {
       "aksara": "เ-ย",
       "nama": "สระเอย",
@@ -502,8 +490,6 @@ class BookController extends GetxController {
       "pronounce": "sara uai",
       "detail": "Vokal gabungan 'uai'"
     },
-
-    // Kombinasi dengan ว
     {
       "aksara": "แ-็ว",
       "nama": "สระแอ็ว",
@@ -516,8 +502,6 @@ class BookController extends GetxController {
       "pronounce": "sara eo",
       "detail": "Vokal gabungan 'eo'"
     },
-
-    // Tanda-tanda Khusus
     {
       "aksara": "ั",
       "nama": "ไม้หันอากาศ",
@@ -542,8 +526,6 @@ class BookController extends GetxController {
       "pronounce": "nikkhahit",
       "detail": "Tanda untuk suara 'ng' di akhir"
     },
-
-    // Vokal Spesial
     {
       "aksara": "ฤ",
       "nama": "ฤ",
@@ -566,8 +548,7 @@ class BookController extends GetxController {
           backgroundColor: Colors.transparent,
           insetPadding: EdgeInsets.zero,
           child: Container(
-            width:
-                screenWidth * 0.45, // Sesuaikan dengan ukuran yang diinginkan
+            width: screenWidth * 0.45,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Colors.white,
@@ -575,12 +556,11 @@ class BookController extends GetxController {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Bagian atas (aksara)
                 Container(
                   width: double.infinity,
-                  height: screenWidth * 0.45, // Menyesuaikan aspect ratio 1:1
+                  height: screenWidth * 0.45,
                   decoration: BoxDecoration(
-                    color: Color(0xFFE0E0E0), // Warna abu-abu muda yang sesuai
+                    color: Color(0xFFE0E0E0),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
@@ -597,12 +577,11 @@ class BookController extends GetxController {
                     ),
                   ),
                 ),
-                // Bagian bawah (informasi)
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Color(0xFF757575), // Warna abu-abu tua yang sesuai
+                    color: Color(0xFF757575),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20),
@@ -651,10 +630,363 @@ class BookController extends GetxController {
     );
   }
 
+  RxList<Map<String, String>> toneMarksList = <Map<String, String>>[
+    {'symbol': 'อิ', 'description': 'mai ek'},
+    {'symbol': 'อี', 'description': 'mai tho'},
+    {'symbol': 'อึ', 'description': 'mai tri'},
+    {'symbol': 'อื', 'description': 'mai jattawa'},
+  ].obs;
+
+  RxList<Map<String, String>> toneSoundsList = <Map<String, String>>[
+    {
+      'symbol': '−',
+      'character': 'อา',
+      'description': 'Datar (rising saamaan)',
+    },
+    {
+      'symbol': '\\',
+      'character': 'อ่า',
+      'description': 'Rendah (falling ek)',
+    },
+    {
+      'symbol': '^',
+      'character': 'อ้า',
+      'description': 'Jatuh (high tho)',
+    },
+    {
+      'symbol': '/',
+      'character': 'อ๊า',
+      'description': 'Tinggi (rising tri)',
+    },
+    {
+      'symbol': 'V',
+      'character': 'อ๋า',
+      'description': 'Turun (falling jattawa)',
+    },
+  ].obs;
+
+  void showToneDetail(BuildContext context, Map<String, String> tone) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: ConstanColor.primaryColor.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                color: ConstanColor.primaryColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Center(
+                child: Text(
+                  tone['symbol']!,
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: ConstanColor.primaryColor,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+            Text(
+              tone['description']!,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: ConstanColor.primaryColor,
+              ),
+            ),
+            SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: ConstanColor.primaryColor,
+                minimumSize: Size(double.infinity, 45),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Text(
+                'Tutup',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void showToneSoundDetail(
+      BuildContext context, Map<String, String> toneSound) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: ConstanColor.primaryColor.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: ConstanColor.primaryColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(
+                    child: Text(
+                      toneSound['symbol']!,
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: ConstanColor.primaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 16),
+                Container(
+                  width: 100,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: ConstanColor.primaryColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(
+                    child: Text(
+                      toneSound['character']!,
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: ConstanColor.primaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Text(
+              toneSound['description']!,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: ConstanColor.primaryColor,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: ConstanColor.primaryColor,
+                minimumSize: Size(double.infinity, 45),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Text(
+                'Tutup',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+
+  RxList<Map<String, String>> simbolList = <Map<String, String>>[
+    {
+      'symbol': 'อํ',
+      'thai': 'กะ กัน',
+      'pronunciation': '/ka/ /kan/',
+      'description': '[nikhahit pada awal]',
+    },
+    {
+      'symbol': 'อิ',
+      'thai': 'เอะ เด็ด',
+      'pronunciation': '/e/ /et/',
+      'description': '[mai tai kuu]',
+    },
+    {
+      'symbol': 'อี',
+      'thai': 'การันต์',
+      'pronunciation': '/kaaran(t)/',
+      'description': '[mai thaikuu]',
+    },
+    {
+      'symbol': 'ๆ',
+      'thai': 'มาๆ',
+      'pronunciation': '/maa maa/',
+      'description': '[pengulangan]',
+    },
+    {
+      'symbol': 'ๆ',
+      'thai': 'อินโดๆ',
+      'pronunciation': '/indo indo/',
+      'description': '[pengulangan]',
+    },
+    {
+      'symbol': 'ๆลๆ',
+      'thai': '1 2 3 ๆลๆ',
+      'pronunciation': '1,2,3 dst',
+      'description': '[dan seterusnya]',
+    },
+  ].obs;
+
+  void showSimbolDetail(BuildContext context, Map<String, String> simbol) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        padding: EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: ConstanColor.primaryColor.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: ConstanColor.primaryColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    simbol['symbol']!,
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: ConstanColor.primaryColor,
+                    ),
+                  ),
+                  SizedBox(width: 16),
+                  Text(
+                    simbol['thai']!,
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: ConstanColor.primaryColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                border: Border.all(
+                    color: ConstanColor.primaryColor.withOpacity(0.2)),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    simbol['pronunciation']!,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: ConstanColor.primaryColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    simbol['description']!,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: ConstanColor.primaryColor.withOpacity(0.7),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: ConstanColor.primaryColor,
+                minimumSize: Size(double.infinity, 45),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Text(
+                'Tutup',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   void onInit() {
     super.onInit();
-    currentContent.value = KategoriaksaraView();
+    currentContent.value = KategoriKonsonanView();
   }
 
   @override
